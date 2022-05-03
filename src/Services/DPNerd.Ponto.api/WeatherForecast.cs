@@ -1,4 +1,4 @@
-namespace DPNerd.Auth.api
+namespace DPNerd.Ponto.api
 {
     public class WeatherForecast
     {

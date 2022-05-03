@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace DPNerd.Auth.api.Controllers
+namespace DPNerd.Ponto.api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
