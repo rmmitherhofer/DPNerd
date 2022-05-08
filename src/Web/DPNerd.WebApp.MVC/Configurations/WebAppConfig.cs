@@ -6,7 +6,7 @@ public static class WebAppConfig
     {
         services.AddControllersWithViews();
 
-        //services.RegistrarServices(configuration);
+        services.RegistrarServices(configuration);
 
         return services;
     }

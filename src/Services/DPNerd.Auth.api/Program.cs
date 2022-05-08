@@ -1,4 +1,4 @@
-using DPNerd.Auth.api.Configuration;
+using DPNerd.Auth.api.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 

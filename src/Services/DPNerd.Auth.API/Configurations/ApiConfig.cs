@@ -1,6 +1,8 @@
-﻿using DPNerd.WebAPI.Core.Identity;
+﻿using DPNerd.Swagger.Core.Configurations;
+using DPNerd.WebAPI.Core.Identity;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 
-namespace DPNerd.Auth.api.Configuration;
+namespace DPNerd.Auth.api.Configurations;
 
 public static class ApiConfig
 {
@@ -10,19 +12,19 @@ public static class ApiConfig
 
         services.AddIdentityConfiguration(configuration);
 
-        services.AddSwaggerConfiguration();
+        services.AddSwaggerConfiguration(false);
 
         return services;
     }
 
-    public static IApplicationBuilder UseApiConfiguration(this IApplicationBuilder app, IWebHostEnvironment env)
+    public static IApplicationBuilder UseApiConfiguration(this WebApplication app, IWebHostEnvironment env)
     {
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
         }
 
-        app.UseSwaggerConfiguration();
+        app.UseSwaggerConfiguration(app.Services.GetRequiredService<IApiVersionDescriptionProvider>());
 
         app.UseHttpsRedirection();
 

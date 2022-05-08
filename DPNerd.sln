@@ -31,13 +31,27 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DPNerd.WebApp.MVC", "src\We
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ponto", "Ponto", "{40921EE2-9163-4990-A43E-FAAD6A6B28DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DPNerd.Ponto.api", "src\Services\DPNerd.Ponto.api\DPNerd.Ponto.api.csproj", "{24010F16-3AB0-4AAA-8BDA-A1DE95A99B62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DPNerd.Ponto.api", "src\Services\DPNerd.Ponto.api\DPNerd.Ponto.api.csproj", "{24010F16-3AB0-4AAA-8BDA-A1DE95A99B62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DPNerd.Ponto.Domain", "src\Services\DPNerd.Ponto.api\DPNerd.Ponto.Domain\DPNerd.Ponto.Domain.csproj", "{6874280F-2E76-4119-B8CE-8F83CDDAA2DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DPNerd.Ponto.Domain", "src\Services\DPNerd.Ponto.Domain\DPNerd.Ponto.Domain.csproj", "{6874280F-2E76-4119-B8CE-8F83CDDAA2DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DPNerd.Ponto.Data", "src\Services\DPNerd.Ponto.api\DPNerd.Ponto.Data\DPNerd.Ponto.Data.csproj", "{2C36F79E-C808-47C2-82C5-1FD76B20C6C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DPNerd.Ponto.Data", "src\Services\DPNerd.Ponto.Data\DPNerd.Ponto.Data.csproj", "{2C36F79E-C808-47C2-82C5-1FD76B20C6C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DPNerd.Ponto.CrossCutting", "src\Services\DPNerd.Ponto.CrossCutting\DPNerd.Ponto.CrossCutting.csproj", "{B9E50761-2C2B-48DA-A82B-08D51AD45811}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DPNerd.Ponto.CrossCutting", "src\Services\DPNerd.Ponto.CrossCutting\DPNerd.Ponto.CrossCutting.csproj", "{B9E50761-2C2B-48DA-A82B-08D51AD45811}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DPNerd.Swagger.Core", "src\building blocks\DPNerd.Swagger.Core\DPNerd.Swagger.Core.csproj", "{1EA1104E-6235-475F-99ED-D2F0A2319AC3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Employee", "Employee", "{0D1A50F8-FB19-41F3-B667-08D256A5A378}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DPNerd.Employees.API", "src\Services\DPNerd.Funcionarios.API\DPNerd.Employees.API.csproj", "{F175034E-43AA-4D3A-A35D-893265B4143F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DPNerd.Notifications", "src\building blocks\DPNerd.Notification\DPNerd.Notifications.csproj", "{68C5D916-9564-4842-A235-E1252A00F893}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DPNerd.Employees.Application", "src\Services\DPNerd.Employee.Application\DPNerd.Employees.Application.csproj", "{FB920AAE-1CD5-4730-B18C-FCF6D56447BD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DPNerd.Employees.Business", "src\Services\DPNerd.Employees.Business\DPNerd.Employees.Business.csproj", "{D402E69A-45DC-4EBE-AD89-BC2125E1A6EC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DPNerd.Employees.Infra", "src\Services\DPNerd.Employees.Data\DPNerd.Employees.Infra.csproj", "{6DC3F8E6-725E-46B1-89F2-0B7E08CF4C69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +91,30 @@ Global
 		{B9E50761-2C2B-48DA-A82B-08D51AD45811}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9E50761-2C2B-48DA-A82B-08D51AD45811}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9E50761-2C2B-48DA-A82B-08D51AD45811}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EA1104E-6235-475F-99ED-D2F0A2319AC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EA1104E-6235-475F-99ED-D2F0A2319AC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EA1104E-6235-475F-99ED-D2F0A2319AC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EA1104E-6235-475F-99ED-D2F0A2319AC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F175034E-43AA-4D3A-A35D-893265B4143F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F175034E-43AA-4D3A-A35D-893265B4143F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F175034E-43AA-4D3A-A35D-893265B4143F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F175034E-43AA-4D3A-A35D-893265B4143F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68C5D916-9564-4842-A235-E1252A00F893}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68C5D916-9564-4842-A235-E1252A00F893}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68C5D916-9564-4842-A235-E1252A00F893}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68C5D916-9564-4842-A235-E1252A00F893}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB920AAE-1CD5-4730-B18C-FCF6D56447BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB920AAE-1CD5-4730-B18C-FCF6D56447BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB920AAE-1CD5-4730-B18C-FCF6D56447BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB920AAE-1CD5-4730-B18C-FCF6D56447BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D402E69A-45DC-4EBE-AD89-BC2125E1A6EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D402E69A-45DC-4EBE-AD89-BC2125E1A6EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D402E69A-45DC-4EBE-AD89-BC2125E1A6EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D402E69A-45DC-4EBE-AD89-BC2125E1A6EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DC3F8E6-725E-46B1-89F2-0B7E08CF4C69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DC3F8E6-725E-46B1-89F2-0B7E08CF4C69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DC3F8E6-725E-46B1-89F2-0B7E08CF4C69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DC3F8E6-725E-46B1-89F2-0B7E08CF4C69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -98,6 +136,13 @@ Global
 		{6874280F-2E76-4119-B8CE-8F83CDDAA2DF} = {40921EE2-9163-4990-A43E-FAAD6A6B28DF}
 		{2C36F79E-C808-47C2-82C5-1FD76B20C6C6} = {40921EE2-9163-4990-A43E-FAAD6A6B28DF}
 		{B9E50761-2C2B-48DA-A82B-08D51AD45811} = {40921EE2-9163-4990-A43E-FAAD6A6B28DF}
+		{1EA1104E-6235-475F-99ED-D2F0A2319AC3} = {3D4E2681-6BD0-4578-8536-14FA95C3D210}
+		{0D1A50F8-FB19-41F3-B667-08D256A5A378} = {FABF2539-9CFE-4FEB-A83E-D0375D934F57}
+		{F175034E-43AA-4D3A-A35D-893265B4143F} = {0D1A50F8-FB19-41F3-B667-08D256A5A378}
+		{68C5D916-9564-4842-A235-E1252A00F893} = {11054430-B5FB-402D-879B-642BD62390AD}
+		{FB920AAE-1CD5-4730-B18C-FCF6D56447BD} = {0D1A50F8-FB19-41F3-B667-08D256A5A378}
+		{D402E69A-45DC-4EBE-AD89-BC2125E1A6EC} = {0D1A50F8-FB19-41F3-B667-08D256A5A378}
+		{6DC3F8E6-725E-46B1-89F2-0B7E08CF4C69} = {0D1A50F8-FB19-41F3-B667-08D256A5A378}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {89D80FE1-4964-4894-B713-A5A33AFF16DB}

@@ -4,7 +4,7 @@ using DPNerd.WebAPI.Core.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace DPNerd.Auth.api.Configuration;
+namespace DPNerd.Auth.api.Configurations;
 
 public static class IdentityConfig
 {

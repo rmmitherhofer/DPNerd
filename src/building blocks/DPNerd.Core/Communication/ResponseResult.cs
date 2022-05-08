@@ -14,10 +14,10 @@ public class ResponseResult
 
 public class ResponseErrorMessages
 {
-    public List<string> Mensagens { get; set; }
+    public IDictionary<string, string> Messages { get; set; }
 
     public ResponseErrorMessages()
     {
-        Mensagens = new List<string>();
+        Messages = new Dictionary<string, string>();
     }
 }
