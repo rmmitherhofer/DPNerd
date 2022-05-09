@@ -1,6 +1,6 @@
 ﻿using DPNerd.Core.Data;
-using DPNerd.Employees.Business.Interface.Repository;
-using DPNerd.Employees.Business.Models;
+using DPNerd.Employees.Application.Interface.Repository;
+using DPNerd.Employees.Application.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DPNerd.Employees.Infra.Data.Repository;
@@ -16,13 +16,17 @@ public class EmployeeRepository : IEmployeeRepository
 
     public IUnitOfWork UnitOfWork => _context;
     public async Task<IEnumerable<Employee>> GetAll()
-        => await _context.Employees.AsNoTracking().ToListAsync();
+        => await _context.Employees        
+        .AsNoTracking().ToListAsync();
     public async Task<Employee> GetByCpf(string cpf)
-        => await _context.Employees.FirstOrDefaultAsync(e => e.Cpf.Number.Equals(cpf));
+        => await _context.Employees
+        .FirstOrDefaultAsync(e => e.Cpf.Number.Equals(cpf));
     public async Task<Employee> GetByRegistration(int registration)
-        => await _context.Employees.FirstOrDefaultAsync(e => e.Registration == registration);
+        => await _context.Employees
+        .FirstOrDefaultAsync(e => e.Registration == registration);
     public async Task<Address> GetAddressById(Guid id)
-        => await _context.Addresses.FirstOrDefaultAsync(a => a.Id == id);
+        => await _context.Addresses
+        .FirstOrDefaultAsync(a => a.EmployeeId == id);
 
     public void Insert(Employee employee)
         => _context.Employees.Add(employee);

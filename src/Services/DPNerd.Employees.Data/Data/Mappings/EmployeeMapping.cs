@@ -1,5 +1,5 @@
 ﻿using DPNerd.Core.DomainObjects.ValueObjects;
-using DPNerd.Employees.Business.Models;
+using DPNerd.Employees.Application.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -15,13 +15,14 @@ public class EmployeeMapping : IEntityTypeConfiguration<Employee>
             .IsRequired()
             .HasColumnName("Matricula");
 
-        builder.Property(e => e.Active)
-            .IsRequired()
-            .HasColumnName("Ativo");
-
-        builder.Property(e => e.Name)
+        builder.Property(e => e.FirstName)
             .IsRequired()
             .HasColumnName("Nome")
+            .HasColumnType("varchar(50)");
+
+        builder.Property(e => e.LastName)
+            .IsRequired()
+            .HasColumnName("Sobrenome")
             .HasColumnType("varchar(250)");
 
         builder.OwnsOne(e => e.Cpf, tf =>
@@ -33,16 +34,78 @@ public class EmployeeMapping : IEntityTypeConfiguration<Employee>
             .HasColumnType($"varchar({Cpf.CpfMaxLength})");
         });
 
-        builder.OwnsOne(e => e.Email, tf =>
-        {
-            tf.Property(e => e.EmailAddress)
+        builder.Property(e => e.BirthDate)
             .IsRequired()
-            .HasMaxLength(Email.EmailAddressMaxLength)
-            .HasColumnName("Email")
-            .HasColumnType($"varchar({Email.EmailAddressMaxLength})");
+            .HasColumnName("DataNascimento");
+
+        builder.Property(e => e.Birthplace)
+            .IsRequired()
+            .HasColumnName("Naturalidade")
+            .HasColumnType("varchar(250)");
+
+        builder.Property(e => e.Nationality)
+            .IsRequired()
+            .HasColumnName("Nacionalidade")
+            .HasColumnType("varchar(250)");
+
+        builder.Property(e => e.Gender)
+            .IsRequired()
+            .HasColumnName("Genero");
+
+        builder.Property(e => e.MaritalStatus)
+            .IsRequired()
+            .HasColumnName("EstadoCivil");
+
+        builder.Property(e => e.SpouseName)
+            .HasColumnName("NomeConjuge")
+            .HasColumnType("varchar(250)");
+
+        builder.Property(e => e.HasSpecialNeeds)
+            .IsRequired()
+            .HasColumnName("PossuiNecessidadesEspeciais");
+
+        builder.Property(e => e.SpecialNeeds)
+            .HasColumnName("NecessidadesEspeciais")
+            .HasColumnType("varchar(600)");
+
+
+        builder.HasMany(e => e.Contacts)
+            .WithOne(e => e.Employee);
+
+        builder.OwnsOne(e => e.Parents, ep =>
+        {
+            ep.Property(ep => ep.NameMother)
+                .IsRequired()
+                .HasColumnName("NomeMae")
+                .HasColumnType("varchar(250)");
+
+            ep.Property(ep => ep.NameFather)
+                .HasColumnName("NomePai")
+                .HasColumnType("varchar(250)");
         });
 
+        builder.OwnsOne(e => e.Pis, es =>
+        {
+            es.Property(es => es.Number)
+                .IsRequired()
+                .HasMaxLength(11)
+                .HasColumnName("Pis")
+                .HasColumnType("varchar(11)");
+        });
+
+        builder.HasOne(e => e.WorkPassport)
+            .WithOne(e => e.Employee);
+
+        builder.HasOne(e => e.GeneralRecord)
+            .WithOne(e => e.Employee);
+
         builder.HasOne(e => e.Address)
+            .WithOne(e => e.Employee);
+
+        builder.HasOne(e => e.VoterTitle)
+            .WithOne(e => e.Employee);
+
+        builder.HasOne(e => e.Reservist)
             .WithOne(e => e.Employee);
 
         builder.ToTable("Colaboradores");

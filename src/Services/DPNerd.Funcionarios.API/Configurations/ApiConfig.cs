@@ -1,9 +1,11 @@
-﻿using DPNerd.Employees.Infra.Data;
+﻿using DPNerd.Employees.Application.AutoMapper;
+using DPNerd.Employees.Infra.Data;
 using DPNerd.Notifications.Configurations;
 using DPNerd.Swagger.Core.Configurations;
 using MediatR;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 namespace DPNerd.Employees.API.Configurations;
 
@@ -14,7 +16,13 @@ public static class ApiConfig
         services.AddDbContext<EmployeeContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("EmployeeConnection")));
 
-        services.AddControllers();
+        services.AddControllers(options =>
+        {
+            options.EnableEndpointRouting = false;
+        }).AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+        });
 
         services.RegisterServices();
 
@@ -23,6 +31,8 @@ public static class ApiConfig
         services.AddSwaggerConfiguration(false);
 
         services.AddMediatR(typeof(Program));
+
+        services.AddAutoMapper(typeof(DomainToViewModelMappingProfile));
 
         return services;
     }

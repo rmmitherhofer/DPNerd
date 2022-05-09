@@ -1,7 +1,7 @@
 ﻿using DPNerd.Core.Data;
-using DPNerd.Employees.Business.Models;
+using DPNerd.Employees.Application.Models;
 
-namespace DPNerd.Employees.Business.Interface.Repository;
+namespace DPNerd.Employees.Application.Interface.Repository;
 
 public interface IEmployeeRepository : IRepository<Employee>
 {

@@ -1,8 +1,8 @@
 ﻿using DPNerd.Core.DomainObjects;
 
-namespace DPNerd.Employees.Business.Models;
+namespace DPNerd.Employees.Application.Models;
 
-public class Address : Entity
+public class Address
 {
     public string PublicPlace { get; private set; }
     public string Number { get; private set; }

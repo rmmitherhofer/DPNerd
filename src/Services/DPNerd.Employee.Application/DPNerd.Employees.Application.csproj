@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Queries\" />
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
   </ItemGroup>
 
 </Project>

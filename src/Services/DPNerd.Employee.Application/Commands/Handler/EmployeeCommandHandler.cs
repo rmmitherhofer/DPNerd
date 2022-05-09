@@ -1,7 +1,7 @@
 ﻿using DPNerd.Core.Messages;
 using DPNerd.Employees.Application.Events;
-using DPNerd.Employees.Business.Interface.Repository;
-using DPNerd.Employees.Business.Models;
+using DPNerd.Employees.Application.Interface.Repository;
+using DPNerd.Employees.Application.Models;
 using FluentValidation.Results;
 using MediatR;
 
@@ -21,7 +21,21 @@ public class EmployeeCommandHandler : CommandHandler,
     {
         if (!message.IsValid()) return message.ValidationResult;
 
-        var employee = new Employee(message.Id, message.Name, message.Email, message.Cpf);
+        var employee = new Employee(
+            message.FirstName,
+            message.LastName,
+            message.Cpf,
+            message.Pis,
+            message.BirthDate,
+            message.Birthplace,
+            message.Nationality,
+            message.Gender,
+            message.MaritalStatus,
+            message.SpouseName,
+            message.HasSpecialNeeds,
+            message.SpecialNeeds,
+            new Parents(message.NameMother, message.NameFather)
+            );
 
         var employeeExist = await _employeeRepository.GetByCpf(employee.Cpf.Number);
 

@@ -1,7 +1,8 @@
 ﻿using DPNerd.Core.Mediator;
 using DPNerd.Employees.Application.Commands;
 using DPNerd.Employees.Application.Commands.Handler;
-using DPNerd.Employees.Business.Interface.Repository;
+using DPNerd.Employees.Application.Interface.Repository;
+using DPNerd.Employees.Application.Queries;
 using DPNerd.Employees.Infra.Data;
 using DPNerd.Employees.Infra.Data.Repository;
 using FluentValidation.Results;
@@ -16,6 +17,8 @@ public static class DependencyInjectionConfig
         services.AddScoped<IMediatorHandler, MediatorHandler>();
 
         services.AddScoped<IRequestHandler<InsertEmployeeCommand, ValidationResult>, EmployeeCommandHandler>();
+
+        services.AddScoped<IEmployeeQueries, EmployeeQueries>();
 
         services.AddScoped<IEmployeeRepository, EmployeeRepository>();
         services.AddScoped<EmployeeContext>();

@@ -1,4 +1,4 @@
-﻿using DPNerd.Employees.Business.Models;
+﻿using DPNerd.Employees.Application.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -8,7 +8,7 @@ public class AddressMapping : IEntityTypeConfiguration<Address>
 {
     public void Configure(EntityTypeBuilder<Address> builder)
     {
-        builder.HasKey(c => c.Id);
+        builder.HasKey(c => c.ZipCode);
 
         builder.Property(c => c.PublicPlace)
             .IsRequired()
@@ -43,6 +43,10 @@ public class AddressMapping : IEntityTypeConfiguration<Address>
             .IsRequired()
             .HasColumnName("Estado")
             .HasColumnType("varchar(95)");
+
+        builder.Property(c => c.EmployeeId)
+            .IsRequired()
+            .HasColumnName("ColaboradorId");
 
         builder.ToTable("Enderecos");
     }

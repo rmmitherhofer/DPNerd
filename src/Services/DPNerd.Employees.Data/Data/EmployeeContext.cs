@@ -2,7 +2,7 @@
 using DPNerd.Core.DomainObjects;
 using DPNerd.Core.Mediator;
 using DPNerd.Core.Messages;
-using DPNerd.Employees.Business.Models;
+using DPNerd.Employees.Application.Models;
 using FluentValidation.Results;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +21,8 @@ public class EmployeeContext : DbContext, IUnitOfWork
 
     public DbSet<Employee> Employees { get; set; }
     public DbSet<Address> Addresses { get; set; }
+    public DbSet<Contact> Contacts { get; set; }
+    public DbSet<GeneralRecord> GeneralRecords { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

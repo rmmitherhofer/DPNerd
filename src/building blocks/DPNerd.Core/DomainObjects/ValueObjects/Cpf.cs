@@ -13,56 +13,41 @@ public class Cpf
     public Cpf(string number)
     {
         if (!IsValid(number)) throw new DomainException("CPF Inválido");
-        Number = number;
+        Number = number.PadLeft(11, '0'); ;
     }
 
     public static bool IsValid(string cpf)
     {
         cpf = cpf.OnlyNumbers(cpf);
 
-        if (cpf.Length > 11) return false;
-
-        while (cpf.Length != 11)
-            cpf = '0' + cpf;
-
-        var equal = true;
-        for (var i = 1; i < 11 && equal; i++)        
-            if (cpf[i] != cpf[0])            
-                equal = false;
-
-        if (equal || cpf == "12345678909")        
-            return false;        
-
-        var numbers = new int[11];
-
-        for (var i = 0; i < 11; i++)
-            numbers[i] = int.Parse(cpf[i].ToString());
-
-        var sum = 0;
-        for (var i = 0; i < 9; i++)
-            sum += (10 - i) * numbers[i];
-
-        var result = sum % 11;
-
-        if (result == 1 || result == 0)        
-            if (numbers[9] != 0)            
-                return false; 
-        else if (numbers[9] != 11 - result)        
-            return false;
-
+        int[] multiplier1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+        int[] multiplier2 = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+        string tempCpf;
+        string digit;
+        int sum;
+        int remainder;
+        cpf = cpf.PadLeft(11, '0');
+        tempCpf = cpf.Substring(0, 9);
         sum = 0;
-        for (var i = 0; i < 10; i++)
-            sum += (11 - i) * numbers[i];
 
-        result = sum % 11;
-
-        if (result == 1 || result == 0)        
-            if (numbers[10] != 0)            
-                return false;            
-        
-        else if (numbers[10] != 11 - result)        
-            return false;
-
-        return true;
+        for (int i = 0; i < 9; i++)
+            sum += int.Parse(tempCpf[i].ToString()) * multiplier1[i];
+        remainder = sum % 11;
+        if (remainder < 2)
+            remainder = 0;
+        else
+            remainder = 11 - remainder;
+        digit = remainder.ToString();
+        tempCpf = tempCpf + digit;
+        sum = 0;
+        for (int i = 0; i < 10; i++)
+            sum += int.Parse(tempCpf[i].ToString()) * multiplier2[i];
+        remainder = sum % 11;
+        if (remainder < 2)
+            remainder = 0;
+        else
+            remainder = 11 - remainder;
+        digit = digit + remainder.ToString();
+        return cpf.EndsWith(digit);
     }
 }

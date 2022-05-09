@@ -23,7 +23,6 @@ public abstract class MainController : ControllerBase
             return HttpContext.Request.Method switch
             {
                 "PUT" or "DELETE" or "POST" => NoContent(),
-                "GET" => result is null ? NotFound() : Ok(result),
                 _ => Ok(result),
             };
         }
