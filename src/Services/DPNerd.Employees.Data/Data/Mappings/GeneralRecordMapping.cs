@@ -8,7 +8,7 @@ public class GeneralRecordMapping : IEntityTypeConfiguration<GeneralRecord>
 {
     public void Configure(EntityTypeBuilder<GeneralRecord> builder)
     {
-        builder.HasKey(c => c.Number);
+        builder.HasKey(c => c.Id);
 
         builder.Property(c => c.Number)
             .IsRequired()

@@ -1,6 +1,8 @@
-﻿namespace DPNerd.Employees.Application.Models;
+﻿using DPNerd.Core.DomainObjects;
 
-public class WorkPassport
+namespace DPNerd.Employees.Application.Models;
+
+public class WorkPassport : Entity
 {
     public int Number { get; private set; }
     public int Serie { get; private set; }
@@ -18,6 +20,10 @@ public class WorkPassport
         Serie = serie;
         State = state;
         DispatchDate = dispatchDate;
+        EmployeeId = employeeId;
+    }
+    internal void BindEmployeed(Guid employeeId)
+    {
         EmployeeId = employeeId;
     }
 }

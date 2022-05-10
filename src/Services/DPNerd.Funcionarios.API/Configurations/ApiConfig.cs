@@ -32,7 +32,7 @@ public static class ApiConfig
 
         services.AddMediatR(typeof(Program));
 
-        services.AddAutoMapper(typeof(DomainToViewModelMappingProfile));
+        services.AddAutoMapper(typeof(DomainToViewModelMappingProfile), typeof(DTOToDomainMappingProfile), typeof(CommandToDomainMappingProfile));
 
         return services;
     }

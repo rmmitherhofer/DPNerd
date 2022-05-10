@@ -23,3 +23,13 @@ public enum MaritalStatus
     Divorced = 4,
     Widower = 5
 }
+
+public enum EmployeeStatus
+{
+    Created = 1,
+    InProcess = 2,
+    Completed = 6,
+    Canceled = 3,
+    Disabled = 4
+}
+

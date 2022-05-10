@@ -8,7 +8,7 @@ public class VoterTitleMapping : IEntityTypeConfiguration<VoterTitle>
 {
     public void Configure(EntityTypeBuilder<VoterTitle> builder)
     {
-        builder.HasKey(c => c.Number);
+        builder.HasKey(c => c.Id);
 
         builder.Property(c => c.Number)
             .IsRequired()

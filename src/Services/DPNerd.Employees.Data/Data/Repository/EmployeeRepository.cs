@@ -16,11 +16,20 @@ public class EmployeeRepository : IEmployeeRepository
 
     public IUnitOfWork UnitOfWork => _context;
     public async Task<IEnumerable<Employee>> GetAll()
-        => await _context.Employees        
-        .AsNoTracking().ToListAsync();
+        => await _context.Employees.AsNoTracking().ToListAsync();
     public async Task<Employee> GetByCpf(string cpf)
-        => await _context.Employees
-        .FirstOrDefaultAsync(e => e.Cpf.Number.Equals(cpf));
+    {
+        return await _context.Employees
+            .Include(e => e.WorkPassport)
+            .Include(e => e.VoterTitle)
+            .Include(e=> e.Address)
+            .Include(e=>e.GeneralRecord)
+            .Include(e=> e.Reservist)
+            .Include(e => e.Contacts)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(e => e.Cpf.Number.Equals(cpf));
+    }
+
     public async Task<Employee> GetByRegistration(int registration)
         => await _context.Employees
         .FirstOrDefaultAsync(e => e.Registration == registration);

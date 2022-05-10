@@ -13,6 +13,7 @@ public class EmployeeMapping : IEntityTypeConfiguration<Employee>
 
         builder.Property(e => e.Registration)
             .IsRequired()
+            .HasDefaultValueSql("NEXT VALUE FOR SequenciaMatricula")
             .HasColumnName("Matricula");
 
         builder.Property(e => e.FirstName)
@@ -51,6 +52,12 @@ public class EmployeeMapping : IEntityTypeConfiguration<Employee>
         builder.Property(e => e.Gender)
             .IsRequired()
             .HasColumnName("Genero");
+
+        builder.Property(e => e.DateRegister)
+            .HasColumnName("DataRegistro");
+
+        builder.Property(e => e.EmployeeStatus)
+            .HasColumnName("Status");
 
         builder.Property(e => e.MaritalStatus)
             .IsRequired()

@@ -2,11 +2,11 @@
 
 namespace DPNerd.Employees.Application.Models;
 
-public class Address
+public class Address : Entity
 {
     public string PublicPlace { get; private set; }
     public string Number { get; private set; }
-    public string Complement { get; private set; }
+    public string? Complement { get; private set; }
     public string District { get; private set; }
     public string ZipCode { get; private set; }
     public string City { get; private set; }
@@ -26,6 +26,10 @@ public class Address
         ZipCode = zipCode;
         City = city;
         State = state;
+        EmployeeId = employeeId;
+    }
+    internal void BindEmployeed(Guid employeeId)
+    {
         EmployeeId = employeeId;
     }
 }

@@ -43,11 +43,22 @@ public class EmployeeContext : DbContext, IUnitOfWork
             relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;
         }
 
+        builder.HasSequence<int>("SequenciaMatricula").StartsAt(1000).IncrementsBy(1);
+
         builder.ApplyConfigurationsFromAssembly(typeof(EmployeeContext).Assembly);
     }
 
     public async Task<bool> Commit()
     {
+        foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("DateRegister") != null))
+        {
+            if (entry.State == EntityState.Added)            
+                entry.Property("DateRegister").CurrentValue = DateTime.Now;            
+
+            if (entry.State == EntityState.Modified)            
+                entry.Property("DateRegister").IsModified = false;            
+        }
+
         var sucesso = await base.SaveChangesAsync() > 0;
 
         if (sucesso)

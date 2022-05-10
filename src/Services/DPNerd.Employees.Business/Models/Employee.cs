@@ -21,21 +21,24 @@ public class Employee : Entity, IAggregateRoot
     public string? SpecialNeeds { get; private set; }
     public Parents Parents { get; private set; }
 
-    public List<Contact> Contacts { get; private set; }
+    private readonly List<Contact> _contacts;
+    public IReadOnlyCollection<Contact> Contacts => _contacts;
+
     public WorkPassport WorkPassport { get; set; }
     public Address Address { get; private set; }
     public GeneralRecord GeneralRecord { get; private set; }
     public VoterTitle VoterTitle { get; private set; }
     public Reservist Reservist { get; private set; }
+    public DateTime DateRegister { get; private set; }
+    public EmployeeStatus EmployeeStatus { get; private set; }
 
-    public Employee() { }
+    protected Employee() { }
 
-    public Employee(string firstName, string lastName, string cpf, string pis, 
+    public Employee(string firstName, string lastName, string cpf, string pis,
         DateTime birthDate, string birthplace, string nationality, Gender gender,
-        MaritalStatus maritalStatus, string? spouseName, bool hasSpecialNeeds, string? 
-        specialNeeds, Parents parents)
+        MaritalStatus maritalStatus, string? spouseName, bool hasSpecialNeeds, string?
+        specialNeeds, List<Contact> contacts)
     {
-        Registration = new Random().Next(10000, int.MaxValue);
         FirstName = firstName;
         LastName = lastName;
         Cpf = new Cpf(cpf);
@@ -48,11 +51,39 @@ public class Employee : Entity, IAggregateRoot
         SpouseName = spouseName;
         HasSpecialNeeds = hasSpecialNeeds;
         SpecialNeeds = specialNeeds;
-        Parents = parents;
+        EmployeeStatus = EmployeeStatus.Created;
+
+        contacts.ForEach(c => c.BindEmployeed(Id));
+        _contacts = contacts;
     }
 
+    public void AddParents(Parents parents)
+    {
+        Parents = parents;
+    }
+    public void AddWorkPassport(WorkPassport workPassport)
+    {
+        workPassport.BindEmployeed(Id);
+        WorkPassport = workPassport;
+    }
     public void AddAddress(Address address)
     {
+        address.BindEmployeed(Id);
         Address = address;
+    }
+    public void AddGeneralRecord(GeneralRecord generalRecord)
+    {
+        generalRecord.BindEmployeed(Id);
+        GeneralRecord = generalRecord;
+    }
+    public void AddVoterTitle(VoterTitle voterTitle)
+    {
+        voterTitle.BindEmployeed(Id);
+        VoterTitle = voterTitle;
+    }
+    public void AddReservist(Reservist reservist)
+    {
+        reservist.BindEmployeed(Id);
+        Reservist = reservist;
     }
 }

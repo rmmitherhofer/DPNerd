@@ -16,7 +16,7 @@ public class Contact : Entity
     public Employee Employee { get; protected set; }
     protected Contact() { }
 
-    public Contact(ContactType type, string description, string? email, string? phone, Guid employeeId)
+    public Contact(ContactType type, string description, string value, Guid employeeId)
     {
         Type = type;
         Description = description;
@@ -24,15 +24,20 @@ public class Contact : Entity
         switch (Type)
         {
             case ContactType.Email:
-                if (string.IsNullOrEmpty(email))
+                if (string.IsNullOrEmpty(value))
                     throw new DomainException("e-mail não informado");
-                Email = new Email(email);
+                Email = new Email(value);
                 return;
             case ContactType.Phone:
-                if (string.IsNullOrEmpty(phone))
+                if (string.IsNullOrEmpty(value))
                     throw new DomainException("telefone não informado");
-                Phone = phone;
+                Phone = value;
                 return;
         }
+    }
+
+    internal void BindEmployeed(Guid employeeId)
+    {
+        EmployeeId = employeeId;
     }
 }

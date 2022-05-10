@@ -8,7 +8,7 @@ public class ReservistMapping : IEntityTypeConfiguration<Reservist>
 {
     public void Configure(EntityTypeBuilder<Reservist> builder)
     {
-        builder.HasKey(c => c.Number);
+        builder.HasKey(c => c.Id);
 
         builder.Property(c => c.Number)
             .IsRequired()

@@ -1,4 +1,5 @@
 ﻿using DPNerd.Core.Messages;
+using DPNerd.Employees.Application.DTO;
 using DPNerd.Employees.Application.Enums;
 using FluentValidation;
 
@@ -6,41 +7,26 @@ namespace DPNerd.Employees.Application.Commands;
 
 public class InsertEmployeeCommand : Command
 {
-    public string FirstName { get; private set; }
-    public string LastName { get; private set; }
-    public string Cpf { get; private set; }
-    public string Pis { get; private set; }
-    public DateTime BirthDate { get; private set; }
-    public string Birthplace { get; private set; }
-    public string Nationality { get; private set; }
-    public Gender Gender { get; private set; }
-    public MaritalStatus MaritalStatus { get; private set; }
-    public string? SpouseName { get; private set; }
-    public bool HasSpecialNeeds { get; private set; }
-    public string? SpecialNeeds { get; private set; }
-    public string NameMother { get; private set; }
-    public string? NameFather { get; private set; }
-
-    public InsertEmployeeCommand(string firstName, string lastName, string cpf,
-    string pis, DateTime birthDate, string birthplace, string nationality,
-    Gender gender, MaritalStatus maritalStatus, string? spouseName,
-    bool hasSpecialNeeds, string? specialNeeds, string nameMother, string? nameFather)
-    {
-        FirstName = firstName;
-        LastName = lastName;
-        Cpf = cpf;
-        Pis = pis;
-        BirthDate = birthDate;
-        Birthplace = birthplace;
-        Nationality = nationality;
-        Gender = gender;
-        MaritalStatus = maritalStatus;
-        SpouseName = spouseName;
-        HasSpecialNeeds = hasSpecialNeeds;
-        SpecialNeeds = specialNeeds;
-        NameMother = nameMother;
-        NameFather = nameFather;
-    }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Cpf { get; set; }
+    public string Pis { get; set; }
+    public DateTime BirthDate { get; set; }
+    public string Birthplace { get; set; }
+    public string Nationality { get; set; }
+    public Gender Gender { get; set; }
+    public MaritalStatus MaritalStatus { get; set; }
+    public string? SpouseName { get; set; }
+    public bool HasSpecialNeeds { get; set; }
+    public string? SpecialNeeds { get; set; }
+    public string NameMother { get; set; }
+    public string? NameFather { get; set; }
+    public ReservistDTO Reservist { get; set; }
+    public VoterTitleDTO VoterTitle { get; set; }
+    public WorkPassportDTO WorkPassport { get; set; }
+    public AddressDTO Address { get; set; }
+    public GeneralRecordDTO GeneralRecord { get; set; }
+    public List<ContactDTO> Contacts { get; set; }       
 
     public override bool IsValid()
     {
@@ -96,12 +82,41 @@ public class InsertEmployeeCommand : Command
 
             When(c => c.HasSpecialNeeds, () =>
             {
-                RuleFor(s => s.SpecialNeeds).NotEmpty().WithMessage("As necessidades especiais não foram informadas");
+                RuleFor(s => s.SpecialNeeds)
+                    .NotEmpty()
+                    .WithMessage("As necessidades especiais não foram informadas");
             });
 
             RuleFor(c => c.NameMother)
                 .NotEmpty()
                 .WithMessage("O nome da mãe não foi informado");
+
+            When(c => c.Gender == Gender.Masculine && c.BirthDate > DateTime.Now.AddYears(-18), () =>
+            {
+                RuleFor(s => s.Reservist)
+                    .NotNull()
+                    .WithMessage("Os dados do serviço militar obrigatório não foram informados");
+            });;
+
+            RuleFor(c => c.VoterTitle)
+                .NotNull()
+                .WithMessage("Os dados do título de eleitor não foram informados");
+
+            RuleFor(c => c.WorkPassport)
+                .NotNull()
+                .WithMessage("Os dados da carteira de trabalho não foram informados");
+
+            RuleFor(c => c.Address)
+                .NotNull()
+                .WithMessage("Os dados do endereço não foram informados");
+
+            RuleFor(c => c.GeneralRecord)
+                .NotNull()
+                .WithMessage("Os dados do registro geral (RG) não foram informados");
+
+            RuleFor(c => c.Contacts.Count())
+                .GreaterThan(0)
+                .WithMessage("O colaborador precisa ter no mínimo 1 meio de contato.");
         }
         protected bool CpfIsValid(string cpf)
         {

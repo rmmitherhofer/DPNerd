@@ -28,16 +28,6 @@ public abstract class MainController : ControllerBase
         }
         return BadRequest(new ResponseValidation(_notification.GetNotifications()));
     }
-    //protected ActionResult CustomResponse(string actionName, object? result = null, object? routeValues = null)
-    //{
-    //    if (OperationIsValid())
-    //        if (actionName is not null)
-    //            return CreatedAtAction(actionName, routeValues, result);
-    //        else
-    //            return Ok(result);
-
-    //    return BadRequest(new ResponseValidation(_notification.GetNotifications()));
-    //}
     protected ActionResult CustomResponse(ModelStateDictionary modelState)
     {
         foreach (var erro in modelState.Values.SelectMany(e => e.Errors))

@@ -7,7 +7,7 @@ public class WorkPassportMapping : IEntityTypeConfiguration<WorkPassport>
 {
     public void Configure(EntityTypeBuilder<WorkPassport> builder)
     {
-        builder.HasKey(w => new { w.Number, w.Serie });
+        builder.HasKey(c => c.Id);
 
         builder.Property(w => w.Number)
             .IsRequired()
